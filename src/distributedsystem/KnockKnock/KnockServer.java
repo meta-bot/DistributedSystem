@@ -40,6 +40,7 @@ class WorkingClass implements Runnable{
             dOut= new DataOutputStream(socket.getOutputStream());
             this.jokes = jokes;
             numberOfJokes = jokes.size();
+            KnockServer.countUp();
         } catch (IOException ex) {
             Logger.getLogger(WorkingClass.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,9 +61,10 @@ class WorkingClass implements Runnable{
                 arr[index] = true;
                 jokeLeft--;
                 for(int i=0;i<jokes.get(index).size();){
-                    if((i&1) > 0){
-                        while(dIn.available() <=0)continue;
+                    System.out.println("Size and i: "+jokes.get(index).size()+" "+i);
+                    if((i%2) == 1){
                         String dataFromClient = dIn.readUTF();
+                        System.out.println("Data from client = "+dataFromClient);
                         if(dataFromClient.equalsIgnoreCase(jokes.get(index).get(i))==false){
                             String dataToClient = "You are supposed to say,\""+jokes.get(index).get(i)+"\". Let's try again.";
                             dOut.writeUTF(dataToClient);
@@ -70,16 +72,21 @@ class WorkingClass implements Runnable{
                             i = 0;
                             continue;
                         }
-                        i++;
+                        //i++;
                     }else{
+                        System.out.println("Send to client:: "+jokes.get(index).get(i));
                         dOut.writeUTF(jokes.get(index).get(i)); dOut.flush();
-                        i++;
+                        //i++;
                     }
+                    i++;
                 }
                 if(jokeLeft>0){
                     dOut.writeUTF("Would you like to listen to another?(Y/N)"); dOut.flush();
-                    while(dIn.available()<=0)continue;
+                    //while(dIn.available()<=0)continue;
+                    System.out.println("YES NO ");
                     if(dIn.readUTF().equalsIgnoreCase("N")){
+                        System.out.println("Bye!!!!!!");
+                        //KnockServer.countDown();
                         closeAll();
                         return;
                     }
@@ -87,6 +94,7 @@ class WorkingClass implements Runnable{
             }
             
             dOut.writeUTF("I have no more jokes to tell"); dOut.flush();
+            //KnockServer.countDown();
             closeAll();
             return;
         } catch (IOException ex) {
@@ -95,11 +103,46 @@ class WorkingClass implements Runnable{
     }
     private void closeAll(){
         try {
+            System.out.println("Bye Bye ");
             socket.close();
             dIn.close();
             dOut.close();
+            KnockServer.countDown();
         } catch (IOException ex) {
             Logger.getLogger(WorkingClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+}
+class demon extends Thread{
+
+    ServerSocket socket;
+
+    public demon(ServerSocket socket) {
+        this.socket = socket;
+    }
+    
+    @Override
+    public void run() {
+        boolean flag = true;
+        while(true){
+            int count = KnockServer.getCount();
+           // System.out.println("Counter == "+count);
+            if(count == 0){
+                try {
+                    System.out.println("00");
+                    int sec = 1000;
+                    Thread.sleep(20*sec);
+                    if(KnockServer.getCount() == 0){
+                        socket.close();
+                        return;
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(demon.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(demon.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
     
@@ -109,6 +152,17 @@ public class KnockServer {
     private ServerSocket server;
     private  ExecutorService threadPool;
     public ArrayList< ArrayList<String> > jokes;
+    public static int threadCounter=0;
+    synchronized public static void countUp(){
+        threadCounter++;
+    }
+    synchronized public static void countDown(){
+        threadCounter--;
+    }
+    synchronized public static int getCount(){
+        return threadCounter;
+    }
+    
     public KnockServer(int port) {
         this.port = port;
         threadPool =  Executors.newFixedThreadPool(100);
@@ -279,8 +333,11 @@ public class KnockServer {
             try {
                 Socket socket = server.accept();
                 threadPool.execute(new WorkingClass(socket,jokes));
-            } catch (IOException ex) {
-                Logger.getLogger(KnockServer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                //Logger.getLogger(KnockServer.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Server is closing now");
+                System.exit(1);
+                return;
             }
         }
     }
@@ -288,6 +345,7 @@ public class KnockServer {
     private void connectServer(){
         try {
             server = new ServerSocket(port);
+            new demon(server).start();
         } catch (IOException ex) {
             Logger.getLogger(KnockServer.class.getName()).log(Level.SEVERE, null, ex);
         }

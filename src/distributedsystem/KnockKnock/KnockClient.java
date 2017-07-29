@@ -63,8 +63,11 @@ public class KnockClient {
                     return;
                 }
                 System.out.print("> ");
-                dataToServer = sc.nextLine();
-                dOut.writeUTF(dataToServer); dOut.flush();
+                if(dIn.available()<=0)
+                {
+                    dataToServer = sc.nextLine();
+                    dOut.writeUTF(dataToServer); dOut.flush();
+                }
             }
         }catch(IOException e){
             e.printStackTrace();

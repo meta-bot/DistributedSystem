@@ -131,6 +131,148 @@ public class KnockServer {
         str = "gugu"; mInner.add(str);
         str = "gaga"; mInner.add(str);
         jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "never"; mInner.add(str);
+        str = "ever"; mInner.add(str);
+        str = "fever"; mInner.add(str);
+        str = "whatever"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "huhu"; mInner.add(str);
+        str = "haha"; mInner.add(str);
+        str = "gugu"; mInner.add(str);
+        str = "gaga"; mInner.add(str);
+        jokes.add(mInner);
+        
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "hatch"; mInner.add(str);
+        str = "hatch who?"; mInner.add(str);
+        str = "god bless you."; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "creal"; mInner.add(str);
+        str = "creal who?"; mInner.add(str);
+        str = "creal pleasure to meet you."; mInner.add(str);
+        jokes.add(mInner);
+        
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "harry"; mInner.add(str);
+        str = "harry who?"; mInner.add(str);
+        str = "harry up and answer the door."; mInner.add(str);
+        jokes.add(mInner);
+        
+         mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "keith"; mInner.add(str);
+        str = "keith who?"; mInner.add(str);
+        str = "keith me, my thweet preenth!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        
+         mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "atch"; mInner.add(str);
+        str = "atch who?"; mInner.add(str);
+        str = "I'm sorry i did not know you had a cold!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        
+         mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "Doris"; mInner.add(str);
+        str = "doris, who?"; mInner.add(str);
+        str = "Doris locked, that's why I had to knock!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "Clear"; mInner.add(str);
+        str = "clear, who?"; mInner.add(str);
+        str = "clear this hallway for delivery."; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "I love"; mInner.add(str);
+        str = "I love who?"; mInner.add(str);
+        str = "I don't know, you tell me!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock!Who's There?"; mInner.add(str);
+        str = "Buster!"; mInner.add(str);
+        str = "Buster who?"; mInner.add(str);
+        str = "Buster Cherry!"; mInner.add(str);
+        str = "Is your daughter home?"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "Doris"; mInner.add(str);
+        str = "doris, who?"; mInner.add(str);
+        str = "Doris locked, that's why I had to knock!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "Boo"; mInner.add(str);
+        str = "Boo, who?"; mInner.add(str);
+        str = "Stop crying you little baby!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "I know a grear knock knock joke."; mInner.add(str);
+        str = "Ok, tell me."; mInner.add(str);
+        str = "All right, You start"; mInner.add(str);
+        str = "Oh, knock knock"; mInner.add(str);
+        str = "who's there?"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "Nobel"; mInner.add(str);
+        str = "Nobel, who?"; mInner.add(str);
+        str = "No bell so I'll knock!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "I scream"; mInner.add(str);
+        str = "I scream, who?"; mInner.add(str);
+        str = "I scream tastes cool on a hot day!"; mInner.add(str);
+        jokes.add(mInner);
+        
+        mInner = new ArrayList<>();
+        str = "knock-knock"; mInner.add(str);
+        str = "who's there"; mInner.add(str);
+        str = "value"; mInner.add(str);
+        str = "Value, who?"; mInner.add(str);
+        str = "Value be my Valentine?"; mInner.add(str);
+        jokes.add(mInner);
+        
+        
+        
+        
     }
     private void doTask(){
         while(true){

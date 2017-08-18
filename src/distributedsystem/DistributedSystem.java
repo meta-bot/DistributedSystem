@@ -5,10 +5,14 @@
  */
 package distributedsystem;
 
+import ReplicatedServer.MasterClass;
+import ReplicatedServer.ReplicatedClient;
+import ReplicatedServer.SlaveClass;
 import distributedsystem.KnockKnock.KnockClient;
 import distributedsystem.KnockKnock.KnockServer;
 import distributedsystem.KnockKnock.TestClient;
 import distributedsystem.KnockKnock.TestServer;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -20,18 +24,22 @@ public class DistributedSystem {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         Scanner sc= new Scanner(System.in);
         int port = 3600;
-        System.out.println("Enter 1 for client and 2 for server");
-        if(sc.nextInt() == 1){
+        System.out.println("Enter 1 for client and 2 for slaveserver and 3 for masterserver");
+        int flag = sc.nextInt();
+        if(flag == 1){
             String ip = "127.0.0.1";
-            new KnockClient(ip, port);
+            new ReplicatedClient(10, port,ip);
             //new TestClient();
+        }else if(flag==2){
+            System.out.println("Enter Port Number# ");
+            int add = sc.nextInt();
+            new SlaveClass(port+add,10);
         }else{
-            new KnockServer(port);
-            //new TestServer();
+            new MasterClass(port);
         }
     }
     

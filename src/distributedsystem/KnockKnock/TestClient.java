@@ -25,8 +25,8 @@ public class TestClient {
     
     private void doTask(){
         try {
-            Socket socket = new Socket("127.0.0.1",3600);
-            DataInputStream dIn = new DataInputStream(socket.getInputStream());
+            Socket socket = new Socket("127.0.0.1",3605);
+            /*DataInputStream dIn = new DataInputStream(socket.getInputStream());
             DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
             System.out.println("Client sending");
             while(true){
@@ -38,10 +38,13 @@ public class TestClient {
                 String xx = dIn.readUTF();
                 System.out.println("data from server -> "+xx);
                 if(xx.contains("exit"))return;
-            }
+            }*/
         } catch (IOException ex) {
             Logger.getLogger(TestClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public static void main(String[] args) {
+        new TestClient().doTask();
     }
 }

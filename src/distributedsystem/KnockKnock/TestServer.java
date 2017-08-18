@@ -24,9 +24,11 @@ public class TestServer {
     }
     private void doTask(){
         try {
-            ServerSocket server = new ServerSocket(3600);
+            ServerSocket server = new ServerSocket(3605);
+            System.out.println("Waiting for client");
             Socket socket = server.accept();
-            DataInputStream dIn = new DataInputStream(socket.getInputStream());
+            System.out.println("Got it");
+            /*DataInputStream dIn = new DataInputStream(socket.getInputStream());
             DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
             
             while(true){
@@ -39,10 +41,13 @@ public class TestServer {
                     server.close();
                     return;
                 }
-            }
+            }*/
         } catch (IOException ex) {
             Logger.getLogger(TestServer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public static void main(String[] args) {
+        new TestServer().doTask();
     }
 }

@@ -31,6 +31,7 @@ public class MasterClass {
     private ArrayList<Integer> loads;
     private int port;
     private ExecutorService threadPool;
+    private int MAXIMUMBUFFERSIZE;
 
     public MasterClass(int port) throws IOException {
         this.port = port;
@@ -282,7 +283,7 @@ public class MasterClass {
                 try {
                     if (dIn.available() > 0) {
                         String dataFromClient = dIn.readUTF();
-                        if (jobSize() < 50) {
+                        if (jobSize() < MAXIMUMBUFFERSIZE) {
                             jobSubmit(this.id + " " + dataFromClient);
                         } else {
                             System.out.println("Client# " + this.id + "'s request is dropped due to stackoverflow(Sorry)");

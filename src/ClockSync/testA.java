@@ -7,9 +7,12 @@ package ClockSync;
 
 import java.io.DataInput;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  *
@@ -17,10 +20,20 @@ import java.net.Socket;
  */
 public class testA {
     void doIt() throws IOException, InterruptedException{
-        Socket socket = new Socket("127.0.0.1", 1234);
-        DataInputStream dIn = new DataInputStream(socket.getInputStream());
-        System.out.println(dIn.readUTF());
-        //System.out.println("Not Reached");
+        ServerSocket server = new ServerSocket(1234);
+        Socket socket = server.accept();
+        try{
+            //Scanner sc = new Scanner(socket.getInputStream());
+            DataOutputStream dOut = new DataOutputStream(socket.getOutputStream());
+            System.out.println("Starting Work Server");
+            Thread.sleep(1000);
+            while(true){
+                dOut.writeUTF("1");
+                dOut.flush();
+            }
+        }catch(Exception e){
+            System.out.println("Found Exception");
+        }
     }
     public static void main(String[] args) throws IOException, InterruptedException {
         new testA().doIt();
